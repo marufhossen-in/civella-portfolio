@@ -1,0 +1,213 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap");
+@import "tailwindcss";
+
+/* ───────────────────────────────────────────────────────────────────────
+   CIVELLA · Design Tokens (RSP-FE-BP-2026)
+   All color is delivered through CSS custom properties so themes switch
+   without a single hardcoded hex in any component.
+   ─────────────────────────────────────────────────────────────────────── */
+
+@theme {
+  --color-canvas: var(--bg-primary);
+  --color-surface: var(--bg-surface);
+  --color-subtle: var(--bg-secondary);
+  --color-elevated: var(--bg-elevated);
+
+  --color-strong: var(--text-primary);
+  --color-soft: var(--text-secondary);
+  --color-muted: var(--text-muted);
+
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-second: var(--accent-second);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-info: var(--info);
+
+  --font-sans: "Poppins", "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --radius-xs: var(--r-xs);
+  --radius-sm: var(--r-sm);
+  --radius-md: var(--r-md);
+  --radius-lg: var(--r-lg);
+  --radius-xl: var(--r-xl);
+
+  --shadow-base: var(--shadow-base-v);
+  --shadow-elevated: var(--shadow-elevated-v);
+}
+
+:root,
+[data-theme="light"] {
+  --bg-primary: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-secondary: #f1f5f9;
+  --bg-elevated: #ffffff;
+
+  --text-primary: #0b0b0b;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+
+  --accent: #0d47a1;
+  --accent-hover: #0b3d91;
+  --accent-second: #1565c0;
+  --accent-soft: #e8f0fe;
+
+  --success: #15803d;
+  --warning: #b45309;
+  --error: #b91c1c;
+  --info: #0369a1;
+
+  --shadow-base-v: 0 4px 20px rgba(15, 23, 42, 0.06);
+  --shadow-elevated-v: 0 12px 40px rgba(15, 23, 42, 0.08);
+}
+
+[data-theme="dark"] {
+  --bg-primary: #0b0b0b;
+  --bg-surface: #111111;
+  --bg-secondary: #171717;
+  --bg-elevated: #1c1c1c;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+
+  --border: #292929;
+  --border-strong: #3a3a3a;
+
+  --accent: #2f6bff;
+  --accent-hover: #2558cc;
+  --accent-second: #4f86ff;
+  --accent-soft: #13264a;
+
+  --success: #22c55e;
+  --warning: #d97706;
+  --error: #ef4444;
+  --info: #38bdf8;
+
+  --shadow-base-v: none;
+  --shadow-elevated-v: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+:root {
+  --r-xs: 6px;
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 20px;
+  --money-size-lg: 44px;
+  --money-size-md: 24px;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  [data-theme="dark"] {
+    color-scheme: dark;
+  }
+  [data-theme="light"] {
+    color-scheme: light;
+  }
+  ::selection {
+    background: var(--accent);
+    color: #fff;
+  }
+  h1, h2, h3, h4 {
+    letter-spacing: -0.02em;
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Utilities & helpers
+   ─────────────────────────────────────────────────────────────────────── */
+@layer utilities {
+  .tnum {
+    font-variant-numeric: tabular-nums;
+    font-family: var(--font-mono);
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .page-enter {
+    will-change: transform, opacity;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .grid-lines {
+    background-image:
+      linear-gradient(to right, color-mix(in srgb, var(--text-muted) 8%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--text-muted) 8%, transparent) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .ring-accent {
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 40%, transparent);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 99px;
+  border: 2px solid var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ── Dropdown / surface text-contrast guarantee ───────────────────────────
+   Forces floated overlay panels onto a solid, themed surface with a readable
+   base text color in BOTH light and dark modes. Utility classes (text-soft,
+   text-accent, text-error …) still win for individual items. */
+.dropdown-panel,
+[role="menu"],
+[role="menuitem"] {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

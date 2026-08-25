@@ -1,0 +1,46 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# builds
+dist/
+dist-ssr/
+build/
+.turbo/
+
+# environment — real values never leave the machine
+.env
+.env.local
+.env.*.local
+
+# test output
+coverage/
+playwright-report/
+test-results/
+
+# vercel
+.vercel
+
+# storybook build output
+storybook-static/
+.storybook-out/
+
+# editor / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*.log
+*.lock.json
+
+# type-check cache
+*.tsbuildinfo
+
+# uploaded avatars (runtime — not committed · use placeholder in mock data)
+public/assets/images/avatars/*.jpg
+public/assets/images/avatars/*.png
+public/assets/images/avatars/*.webp
+!public/assets/images/avatars/.gitkeep

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Civella — Premium property discovery & agent intelligence platform. Map-first listings, market intelligence, and a professional agent workspace."
+    />
+    <meta name="theme-color" content="#0D47A1" />
+    <title>Civella · Premium Property Discovery</title>
+    <script>
+      // No-flash theme init — runs before React mounts.
+      (function () {
+        try {
+          var t = localStorage.getItem("civella.theme") || "system";
+          var dark =
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var resolved = t === "system" ? (dark ? "dark" : "light") : t;
+          document.documentElement.dataset.theme = resolved;
+        } catch (e) {
+          document.documentElement.dataset.theme = "light";
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
